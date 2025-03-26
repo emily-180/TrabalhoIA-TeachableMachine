@@ -45,10 +45,11 @@ async function loop() {
 
 async function predict() {
     const prediction = await model.predict(webcam.canvas);
-    for (let i = 0; i < maxPredictions; i++) {
-        const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-        labelContainer.childNodes[i].innerHTML = classPrediction;
-    }
+    // Encontra a classe com a maior probabilidade
+    let highestPrediction = prediction.reduce((max, p) => p.probability > max.probability ? p : max, prediction[0]);
+
+    // Exibe apenas a classe com maior porcentagem
+    labelContainer.innerHTML = highestPrediction.className + ": " + (highestPrediction.probability * 100).toFixed(2) + "%";
 }
 
 async function toggleCamera() {
