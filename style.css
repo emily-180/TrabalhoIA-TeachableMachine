@@ -14,8 +14,21 @@ body {
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
+#webcam-container, #image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#uploadedImageCanvas {
+    border: 2px solid #333;
+    max-width: 100%;
+    height: auto;
+}
 .btn-custom {
     background-color: #88016b;
     color: white;
