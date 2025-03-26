@@ -1,7 +1,7 @@
 const URL = "./my_model/";
 let model, webcam, labelContainer, maxPredictions;
 let isFrontCamera = true;
-let isUsingWebcam = false; // Agora começa como falso
+let isUsingWebcam = false; 
 
 async function init() {
     if (!model) {
@@ -51,7 +51,6 @@ async function predictFromWebcam() {
     showPrediction(prediction);
 }
 
-// Alternar câmera
 async function toggleCamera() {
     isFrontCamera = !isFrontCamera;
     await setupWebcam();
