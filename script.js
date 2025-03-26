@@ -45,10 +45,7 @@ async function loop() {
 
 async function predict() {
     const prediction = await model.predict(webcam.canvas);
-    // Encontra a classe com a maior probabilidade
     let highestPrediction = prediction.reduce((max, p) => p.probability > max.probability ? p : max, prediction[0]);
-
-    // Exibe apenas a classe com maior porcentagem
     labelContainer.innerHTML = highestPrediction.className + ": " + (highestPrediction.probability * 100).toFixed(2) + "%";
 }
 
