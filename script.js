@@ -1,6 +1,6 @@
 const URL = "./my_model/";
 let model, webcam, labelContainer, maxPredictions;
-let isFrontCamera = true; // Define se a câmera frontal está ativa
+let isFrontCamera = true; 
 
 async function init() {
     const modelURL = URL + "model.json";
@@ -9,30 +9,29 @@ async function init() {
     model = await tmImage.load(modelURL, metadataURL);
     maxPredictions = model.getTotalClasses();
 
-    await setupWebcam(); // Inicializa a webcam corretamente
+    await setupWebcam(); 
 
     window.requestAnimationFrame(loop);
 }
 
-async function setupWebcam() {
+async function setupWebcam() { 
     if (webcam) {
-        webcam.stop(); // Para a webcam antes de alternar
+        webcam.stop();
     }
 
-    const flip = isFrontCamera; // Define se a câmera será espelhada
-    const facingMode = isFrontCamera ? "user" : "environment"; // Alterna entre frontal e traseira
+    const flip = isFrontCamera; 
+    const facingMode = isFrontCamera ? "user" : "environment"; 
 
     webcam = new tmImage.Webcam(200, 200, flip);
-    await webcam.setup({ facingMode }); // Configura a câmera correta
+    await webcam.setup({ facingMode }); 
     await webcam.play();
 
-    // Adiciona a webcam ao container
     const container = document.getElementById("webcam-container");
-    container.innerHTML = ""; // Remove a câmera anterior
+    container.innerHTML = ""; 
     container.appendChild(webcam.canvas);
 
     labelContainer = document.getElementById("label-container");
-    labelContainer.innerHTML = ""; // Limpa previsões antigas
+    labelContainer.innerHTML = ""; 
     for (let i = 0; i < maxPredictions; i++) {
         labelContainer.appendChild(document.createElement("div"));
     }
@@ -52,8 +51,7 @@ async function predict() {
     }
 }
 
-// Função para alternar entre as câmeras
 async function toggleCamera() {
-    isFrontCamera = !isFrontCamera; // Alterna entre frontal e traseira
-    await setupWebcam(); // Reconfigura a webcam
+    isFrontCamera = !isFrontCamera; 
+    await setupWebcam(); 
 }
